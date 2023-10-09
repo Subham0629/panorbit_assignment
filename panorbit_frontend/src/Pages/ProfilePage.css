@@ -1,0 +1,40 @@
+.popup-logo {
+    position: fixed;
+    bottom: 0px; /* Adjust the distance as needed */
+    right: 150px; /* Align with the chatbox container */
+  }
+  .popup-logo.open {
+    transform: translateY(-100%);
+    bottom: 250px;
+  }
+  
+  /* Chatbox Container */
+  .chatbox-container {
+    position: fixed;
+    bottom: 0px;
+    right: 150px;
+    width: 295px;
+    height: 300px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border:1px solid #007BFF;
+    overflow: hidden;
+    z-index: 9999;
+  }
+  
+  .sub-chatbox{
+    position: fixed;
+    bottom: 0px;
+    right: 470px;
+    width: 250px;
+    height: 300px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+   
+    overflow: hidden;
+    z-index: 9999;
+  }
+  
+  .lefttext Text{
+    font-size: 30px;
+  }
