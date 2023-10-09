@@ -1,7 +1,7 @@
 import { Center, Text } from '@chakra-ui/react'
 import React from 'react'
 
-const Posts = () => {
+const Gallery = () => {
   return (
     <div>
       <Center h="70vh">
@@ -14,4 +14,4 @@ const Posts = () => {
   )
 }
 
-export default Posts
+export default Gallery

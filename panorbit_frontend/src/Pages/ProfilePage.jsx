@@ -25,6 +25,7 @@ const ProfilePage = ({dataToPass }) => {
         setSelectedUser(null)
       }
       const getUsers=()=>{
+        // Fetch user data from the API endpoint
         axios.get('https://panorbit.in/api/users.json')
           .then((response) => {
             // Update the state with the fetched user data
@@ -35,8 +36,8 @@ const ProfilePage = ({dataToPass }) => {
           });
     }
     useEffect(() => {
-        // Fetch user data from the API endpoint
         if(dataToPass){
+          //If user changed from modal update profile data
            setuser(dataToPass)
         }
        
@@ -53,7 +54,7 @@ const ProfilePage = ({dataToPass }) => {
             borderRadius="full"
             mx="auto"
             src={user?.profilepicture}></Image>
-            <Text>{user?.name}</Text>
+            <Text fontWeight={"bold"} color={"gray.700"} fontSize={"20px"}>{user?.name}</Text>
           </Box>
        <Box display={"flex"} gap={"10px"} ml={"60px"}  mt={"10px"} >
        <Box textAlign={"right"} w={"50%"} color={"gray"} fontSize={"20px"}>
@@ -71,7 +72,7 @@ const ProfilePage = ({dataToPass }) => {
             </Box>
         </Box>
         <Divider borderColor="gray.300" borderWidth="1px" mt="4" mb="4"/>
-        <Text >Company</Text>
+        <Text  color={"gray"} fontSize={"20px"}>Company</Text>
         <Box display={"flex"} gap={"10px"} mt={"10px"} ml={"50px"}>
           <Box textAlign={"right"} w={"50%"} color={"gray"} fontSize={"18px"}>
           
@@ -91,7 +92,7 @@ const ProfilePage = ({dataToPass }) => {
         <Divider orientation="vertical" height="auto" borderColor="gray" mx="10" />
         <Box width="60%" ml="30px" textAlign="left" >
 
-            <Text >Address : </Text>
+            <Text  color={"gray"} fontSize={"20px"}>Address : </Text>
             <Box display={"flex"} gap={"20px"} ml={"20px"} mt={"20px"}>
             <Box textAlign={"right"} color={"gray"} fontSize={"20px"}>
             <Text>Street : </Text>
@@ -154,8 +155,6 @@ const ProfilePage = ({dataToPass }) => {
       {/* Chatbox */}
       {selectedUser && isOpen && (<Box>
             <Box className="sub-chatbox"
-              //p="10px"
-              
               borderBottom="none"
               borderTopLeftRadius="10px"
               borderTopRightRadius="10px"
@@ -202,26 +201,24 @@ const ProfilePage = ({dataToPass }) => {
       {isOpen && (
         <Box className="chatbox-container">
             {/* Selected User Box */}
-          
-           
             <Box
         m="auto"
         ml="20px"
         mr="10px"
         overflowY="auto"
-        maxHeight="100%"
+        maxHeight="400px"
         width="auto"
-        // Use the sx prop to customize the scrollbar styles
         sx={{
-          '& : :-webkit-scrollbar' : {
-            width : '10px',
+          '&::-webkit-scrollbar': {
+            width: '10px',
           },
-          '& : :-webkit-scrollbar-thumb' : {
-            backgroundColor : 'gray.300', 
-            borderRadius : 'full',
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'gray.300', 
+            borderRadius: 'full',
           }
         }}
       >
+         {/* Mapped all users accept loged in user */}
         {data.map((singleuser) => (singleuser.name!==user.name &&
             <Box
       
@@ -235,11 +232,11 @@ const ProfilePage = ({dataToPass }) => {
             >
             <Flex
        
-            direction="row" // Vertically align text
-            align="center" // Horizontally align text
+            direction="row" 
+            align="center" 
             gap="20px"
-            justify="flex-start" // Vertically align text
-            height="100%" // Ensure the Flex container takes up the entire height of the box
+            justify="flex-start" 
+            height="100%" 
           >
             <Image
               src={singleuser.profilepicture}

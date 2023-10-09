@@ -6,37 +6,24 @@ import {
   Flex,
   HStack,
   VStack,
-  Icon,
   useColorModeValue,
   Text,
   Drawer,
   DrawerContent,
   useDisclosure,
   Button,
-  FlexProps,
   Menu,
   MenuButton,
   MenuDivider,
-  MenuItem,
   MenuList,
   Image
 } from '@chakra-ui/react'
 import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
-  FiBell,
-  FiChevronDown,
 } from 'react-icons/fi'
-import { IconType } from 'react-icons'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import UserCard from './UserCard'
-
 
 
 const LinkItems = [
@@ -52,17 +39,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
     <Box
       transition="3s ease"
       bg={useColorModeValue('blue.700')}
-      borderRadius="40px"
+      borderRadius="30px"
       pt="10%"
-      //borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        {/* <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text> */}
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -83,7 +66,6 @@ const NavItem = ({ icon, children,path, ...rest }) => {
     <Box
     onClick={() => navigate(path)}
       as="a"
-     // href="#"
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}>
       <Flex
@@ -93,21 +75,8 @@ const NavItem = ({ icon, children,path, ...rest }) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
-        // _hover={{
-        //   bg: 'cyan.400',
-        //   color: 'white',
-        // }}
         {...rest}>
-        {/* {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icon}
-          />
-        )} */}
+
         {children}
       </Flex>
     </Box>
@@ -115,8 +84,8 @@ const NavItem = ({ icon, children,path, ...rest }) => {
 }
 
   const MobileNav = ({ onOpen,handleLog,passdata, ...rest }) => {
+    //Taking user from local storage
       const [user,setUser]=useState(JSON.parse(localStorage.getItem('selectedUser')))
-
       const [data,setdata]=useState([])
       let navigate = useNavigate();
       const GotoProfile = () =>{ 
@@ -131,19 +100,20 @@ const NavItem = ({ icon, children,path, ...rest }) => {
       const handleClick=(user)=>{
           localStorage.setItem('selectedUser', JSON.stringify(user));
           setUser(JSON.parse(localStorage.getItem('selectedUser')))
-          GotoProfile()
+          GotoProfile() //Naviates to profile page
           passdata(JSON.parse(localStorage.getItem('selectedUser')))
       }
       const handleLogout=()=>{
-          localStorage.removeItem('selectedUser');
-          GotoHome()
-          handleLog()
+          localStorage.removeItem('selectedUser'); // Cleared user from local storage
+          GotoHome() //Naviates to landing page
+          handleLog() 
       
       }
       const getUsers=()=>{
+        // Fetch user data from the API endpoint
           axios.get('https://panorbit.in/api/users.json')
             .then((response) => {
-              // Update the state with the fetched user data
+              // Updated the state with the fetched user data
               setdata (response.data.users);
             })
             .catch((error) => {
@@ -151,7 +121,6 @@ const NavItem = ({ icon, children,path, ...rest }) => {
             });
       }
       useEffect(() => {
-          // Fetch user data from the API endpoint
           getUsers()
         }, []);
     return (
@@ -172,17 +141,7 @@ const NavItem = ({ icon, children,path, ...rest }) => {
           aria-label="open menu"
           icon={<FiMenu />}
         />
-
-        {/* <Text
-          display={{ base: 'flex', md: 'none' }}
-          fontSize="2xl"
-          fontFamily="monospace"
-          fontWeight="bold">
-          Logo
-        </Text> */}
-
         <HStack spacing={{ base: '0', md: '6' }}>
-          {/* <IconButton size="lg" variant="ghost" aria-label="open menu" icon={<FiBell />} /> */}
           <Flex alignItems={'center'} >
             <Menu >
               <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
@@ -199,7 +158,6 @@ const NavItem = ({ icon, children,path, ...rest }) => {
                     spacing="1px"
                     ml="2">
                     <Text fontSize="sm">{user.name}</Text>
-                    
                   </VStack>
                   <Box display={{ base: 'none', md: 'flex' }}>
                     
@@ -226,7 +184,6 @@ const NavItem = ({ icon, children,path, ...rest }) => {
           overflowY="auto"
           maxHeight="100px"
           width="auto"
-          // Use the sx prop to customize the scrollbar styles
           sx={{
             '&::-webkit-scrollbar': {
               width: '10px',
@@ -238,6 +195,7 @@ const NavItem = ({ icon, children,path, ...rest }) => {
           }}
         >
           <MenuDivider />
+          {/* Mapped all users accept loged in user */}
           {data.map((singleuser) => (singleuser.name !==user.name &&<>
 
               <Flex w="100%" direction="row" align="center"
@@ -283,11 +241,9 @@ const NavItem = ({ icon, children,path, ...rest }) => {
             <SidebarContent onClose={onClose} />
           </DrawerContent>
         </Drawer>
-        {/* mobilenav */}
         <MobileNav onOpen={onOpen} handleLog={handleLog} passdata={passdata}/>
         <Box ml={{ base: 0, md: 60 }} p="4">
           {children}
-          {/* Content */}
         </Box>
       </Box>
     )

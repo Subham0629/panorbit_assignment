@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Flex, Image, Text, Button, Container, Heading } from '@chakra-ui/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Box,Heading } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import UserCard from './UserCard';
 
 function LandingPage({setIsLandingPage}) {
@@ -15,15 +15,13 @@ function LandingPage({setIsLandingPage}) {
     // Set isLoading to true
     setIsLandingPage(true);
     GotoProfile()
-
-    // Perform any other actions you need when a user card is clicked
   };
 
   useEffect(() => {
-    // Fetch user data from the API endpoint
+    // Fetched user data from the API endpoint
     axios.get('https://panorbit.in/api/users.json')
       .then((response) => {
-        // Update the state with the fetched user data
+        // Updated the state with the fetched user data
         setUsers(response.data.users);
       })
       .catch((error) => {
@@ -49,7 +47,6 @@ function LandingPage({setIsLandingPage}) {
         overflowY="auto"
         maxHeight="400px"
         width="auto"
-        // Use the sx prop to customize the scrollbar styles
         sx={{
           '&::-webkit-scrollbar': {
             width: '10px',
@@ -60,6 +57,7 @@ function LandingPage({setIsLandingPage}) {
           }
         }}
       >
+        {/* All users data is mapped */}
         {users.map((user) => (
           <UserCard key={user.id} user={user} onClick={handleUserCardClick}/>
         ))}

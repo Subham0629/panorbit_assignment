@@ -1,8 +1,8 @@
 // UserCard.js
 
 import React from 'react';
-import { Box, Image, Text,Link,Flex } from '@chakra-ui/react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Box, Image, Text,Flex } from '@chakra-ui/react';
+import {  useNavigate } from 'react-router-dom';
 
 function UserCard({ user, onClick }) {
     let navigate = useNavigate();
@@ -12,8 +12,7 @@ function UserCard({ user, onClick }) {
       }
 
     const handleViewProfile = (user) => {
-    // Store the selected user's data in local storage
-    
+    // Stored the selected user's data in local storage
     localStorage.setItem('selectedUser', JSON.stringify(user));
     onClick();
     GotoProfile()
@@ -31,12 +30,11 @@ function UserCard({ user, onClick }) {
     >
       <Flex
        
-        direction="row" // Vertically align text
-        align="center" // Horizontally align text
+        direction="row" 
+        align="center" 
         gap="20px"
-        justify="flex-start" // Vertically align text
-        height="100%" // Ensure the Flex container takes up the entire height of the box
-      >
+        justify="flex-start" 
+        height="100%">
         <Image
           src={user.profilepicture}
           alt={user.name}

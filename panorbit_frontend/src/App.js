@@ -12,9 +12,7 @@ function App() {
   const [dataToPass, setDataToPass] = useState(null);
 
   const handleLog = () => {
-   
-    setIsLandingPage(false); // Update isLandingPage to true
-  
+    setIsLandingPage(false); // Update isLandingPage to true 
   };
   let pass={}
   const passdata = (pass) => {
@@ -22,34 +20,13 @@ function App() {
   };
   return (
     <div className="App">
+      {/* Conditional rendering in Landing and other pages */}
       {isLandingPage?<ProfileDetails handleLog={handleLog} passdata={passdata} pass={pass}><MainRoutes dataToPass={dataToPass}/></ProfileDetails>:<Routes>
       
       <Route exact path="/"
       element={
         <LandingPage setIsLandingPage={setIsLandingPage} />}/>
-</Routes>}
-      
-   
-   {/* <Routes>
-      {isLandingPage ? (
-        <Route
-          path="/"
-          element={<LandingPage onNavigateToProfile={() => setIsLandingPage(false)} />}
-        />
-      ) : (
-        <Route
-          path="/profilepage"
-          element={<ProfileDetails onNavigateToLandingPage={() => navigate('/')}><MainRoutes/></ProfileDetails>}
-        />
-      )}
-    </Routes> */}
-
-    
-      
-
-    
-
-      
+</Routes>}     
     </div>
   );
 }

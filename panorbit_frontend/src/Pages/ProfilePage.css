@@ -1,7 +1,7 @@
 .popup-logo {
     position: fixed;
-    bottom: 0px; /* Adjust the distance as needed */
-    right: 150px; /* Align with the chatbox container */
+    bottom: 0px; 
+    right: 150px; 
   }
   .popup-logo.open {
     transform: translateY(-100%);
