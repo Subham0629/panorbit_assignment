@@ -126,7 +126,7 @@ const ProfilePage = ({dataToPass }) => {
         allowFullScreen
       ></iframe>
     </Box>
-    <Box display="flex" gap="15px" w="80%" justifyContent="flex-end">
+    <Box display="flex" gap="15px" w="80%" justifyContent="flex-end" color={"gray"} fontSize="12px" mb="20px">
     <Text>Lat : {lat}</Text>
     <Text>Long : {lng}</Text>
     </Box>

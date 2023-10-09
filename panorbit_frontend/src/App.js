@@ -1,11 +1,9 @@
-import { Route, Router, Routes ,Switch, useNavigate} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import MainRoutes from './AllRoutes/MainRoutes';
 import './App.css';
 import ProfileDetails from './components/ProfileDetails';
 import LandingPage from './components/LandingPage';
 import { useState } from 'react';
-import Posts from './Pages/Posts';
-import ProfilePage from './Pages/ProfilePage';
 
 function App() {
   const [isLandingPage, setIsLandingPage] = useState(false);
